@@ -13,12 +13,16 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-app.get("/", async (req, res) => {
+app.get("/:key", async (req, res) => {
+    const key=req.params.key;
+    const params= req.query;
     const chatCompletion = await openai.chat.completions.create({
-        messages: [{ role: "user", content: "hi" }],
+        messages: [{ role: "user", content: `${key}"` }],
         model: "gpt-3.5-turbo",
     });
-    res.json(chatCompletion.choices[0])
+    res.json(chatCompletion.choices[0].message.content)
+    // res.json({...req.params,...req.query});
+
 });
 
 app.listen(process.env.PORT, () => {

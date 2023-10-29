@@ -1,10 +1,11 @@
-import { useEffect } from "react"
+import { Header } from "../components/Header"
 
 export const Home = () => {
-    useEffect(() => {
-        console.log("hello");
-    }, [])
+
     return (
-        <div className="bg-red-600 h-screen">Home</div>
+        <div className=" h-screen w-screen">
+           <Header/>
+
+        </div>
     )
 }
